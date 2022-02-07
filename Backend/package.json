@@ -1,0 +1,29 @@
+{
+  "name": "followers",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.2",
+    "fs": "0.0.1-security",
+    "http-proxy": "^1.18.1",
+    "http-proxy-middleware": "^2.0.1",
+    "mongoose": "^6.1.3",
+    "morgan": "^1.10.0",
+    "puppeteer": "^13.0.0",
+    "scraper-instagram": "^1.0.17",
+    "tiktok-scraper": "^1.4.36",
+    "tiktok-search": "^2.0.3",
+    "uuid": "^7.0.3",
+    "youtubesubs-count-v1": "^1.0.9",
+    "yt-subscription-count-scraper": "^1.0.6"
+  }
+}
