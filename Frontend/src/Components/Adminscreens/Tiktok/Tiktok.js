@@ -33,7 +33,7 @@ export default class tiktok extends Component {
         const body = {
             Username:Username
         }
-        axios.post("http://localhost:7777/tiktok/TT_Post",body).then((res)=>{
+        axios.post(`${process.env.REACT_APP_BACKEND_URL}/tiktok/TT_Post`,body).then((res)=>{
             console.log(res)
             if(res){
                 this.componentDidMount()
@@ -44,7 +44,7 @@ export default class tiktok extends Component {
     }
 
     componentDidMount(){
-        axios.get("http://localhost:7777/tiktok/TT_Getalldata").then(response =>{
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/tiktok/TT_Getalldata`).then(response =>{
             console.log(response.data[0])
             this.setState({
                 tiktok_data:response.data
@@ -60,7 +60,7 @@ export default class tiktok extends Component {
     }
 
     TTgetdataforedit(){
-        axios.get("http://localhost:7777/tiktok/TT_Getalldata").then(response =>{
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/tiktok/TT_Getalldata`).then(response =>{
             console.log(response.data[0])
             this.setState({
                 _id: response.data[0]._id,
@@ -81,7 +81,7 @@ export default class tiktok extends Component {
         const data ={
             Username :  TTUpdateUsername
         }
-        axios.put("http://localhost:7777/tiktok/TT_Updatedata/"+_id,data).then(response =>{
+        axios.put(`${process.env.REACT_APP_BACKEND_URL}/tiktok/TT_Updatedata/`+_id,data).then(response =>{
             console.log(response)
         })
     }
@@ -90,7 +90,7 @@ export default class tiktok extends Component {
 
     TT_timer(){
 
-        axios.get("http://localhost:7777/tiktok/TT_Get").then(response =>{
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/tiktok/TT_Get`).then(response =>{
             console.log('Running')
         })
 
@@ -98,7 +98,7 @@ export default class tiktok extends Component {
 
     deleteTTuser(_id){
         console.log(_id)
-        axios.delete("http://localhost:7777/tiktok/TT_Deletedata/"+_id).then(response =>{
+        axios.delete(`${process.env.REACT_APP_BACKEND_URL}/tiktok/TT_Deletedata/`+_id).then(response =>{
          console.log(response)
          if(response){
              this.setState({
