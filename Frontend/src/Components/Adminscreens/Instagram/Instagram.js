@@ -31,7 +31,7 @@ export default class instagram extends Component {
         const body = {
             Username:Username
         }
-        axios.post("http://localhost:7777/Instagram/In_Post",body).then((res)=>{
+        axios.post(`${process.env.REACT_APP_BACKEND_URL}/Instagram/In_Post`,body).then((res)=>{
             console.log(res)
         }).catch(error=>{
             console.log(error)
@@ -39,7 +39,7 @@ export default class instagram extends Component {
     }
 
     componentDidMount(){
-        axios.get("http://localhost:7777/Instagram/In_Getalldata").then(response =>{
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/instagram/In_Getalldata`).then(response =>{
             console.log(response.data[0])
             this.setState({
                 Insta_data:response.data
@@ -57,7 +57,7 @@ export default class instagram extends Component {
     }
 
     getdataforedit(){
-        axios.get("http://localhost:7777/Instagram/In_Getalldata").then(response =>{
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/instagram/In_Getalldata`).then(response =>{
             // console.log(response.data[0])
             this.setState({
                 _id: response.data[0]._id,
@@ -72,7 +72,7 @@ export default class instagram extends Component {
         const data ={
             Username : UpdateUsername
         }
-        axios.put("http://localhost:7777/Instagram/In_update/"+_id,data).then(response =>{
+        axios.put(`${process.env.REACT_APP_BACKEND_URL}/instagram/In_update/`+_id,data).then(response =>{
             console.log(response)
         })
 
@@ -80,7 +80,7 @@ export default class instagram extends Component {
 
     deleteinstauser(_id){
    console.log(_id)
-   axios.delete("http://localhost:7777/Instagram/In_delete/"+_id).then(response =>{
+   axios.delete(`${process.env.REACT_APP_BACKEND_URL}/instagram/In_delete/`+_id).then(response =>{
     console.log(response)
     if(response){
         this.setState({

@@ -35,7 +35,7 @@ export default class Youtube extends Component {
             Api_key:YT_Apikey,
             Username : YT_Username
         }
-        axios.post("http://localhost:7777/youtube/YT_Post",body).then((res)=>{
+        axios.post(`${process.env.REACT_APP_BACKEND_URL}/youtube/YT_Post`,body).then((res)=>{
             console.log(res)
         }).catch(error=>{
             console.log(error)
@@ -44,7 +44,7 @@ export default class Youtube extends Component {
 
 
     componentDidMount(){
-        axios.get("http://localhost:7777/youtube/YT_Getalldata").then(response =>{
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/youtube/YT_Getalldata`).then(response =>{
             console.log(response.data[0])
             this.setState({
                 Youtube_data:response.data
@@ -57,7 +57,7 @@ export default class Youtube extends Component {
         }
     }
     YTgetdataforedit(){
-        axios.get("http://localhost:7777/youtube/YT_Getalldata").then(response =>{
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/youtube/YT_Getalldata`).then(response =>{
             console.log(response.data[0])
             this.setState({
                 _id: response.data[0]._id,
@@ -77,7 +77,7 @@ export default class Youtube extends Component {
             Api_key:YtUpdateApi_key,
             Username : YtUpdateUsername
         }
-        axios.put("http://localhost:7777/youtube/YT_update/"+_id,data).then(response =>{
+        axios.put(`${process.env.REACT_APP_BACKEND_URL}/youtube/YT_update/`+_id,data).then(response =>{
             console.log(response)
             
         })
@@ -90,7 +90,7 @@ export default class Youtube extends Component {
 
     deleteYTuser(_id){
         console.log(_id)
-        axios.delete("http://localhost:7777/youtube/YT_deletedata/"+_id).then(response =>{
+        axios.delete(`${process.env.REACT_APP_BACKEND_URL}/youtube/YT_deletedata/`+_id).then(response =>{
          console.log(response)
          if(response){
              this.setState({

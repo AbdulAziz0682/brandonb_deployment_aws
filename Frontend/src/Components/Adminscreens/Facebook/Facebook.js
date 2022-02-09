@@ -25,7 +25,7 @@ FbChangehandler(e){
 }
 
 componentDidMount(){
-    axios.get("http://localhost:7777/facebook/Fb_Getalldata").then(response =>{
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/facebook/Fb_Getalldata`).then(response =>{
         console.log(response.data[0])
         this.setState({
            Fb_data:response.data
@@ -47,7 +47,7 @@ FbUserDetails(){
     const body = {
         Username:FB_Username
     }
-    axios.post("http://localhost:7777/facebook/Fb_Post",body).then((res)=>{
+    axios.post(`${process.env.REACT_APP_BACKEND_URL}/facebook/Fb_Post`,body).then((res)=>{
         console.log(res)
         this.componentDidMount()
     }).catch(error=>{
@@ -57,7 +57,7 @@ FbUserDetails(){
 }
 
 Fbgetdataforedit(){
-    axios.get("http://localhost:7777/facebook/Fb_Getalldata").then(response =>{
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/facebook/Fb_Getalldata`).then(response =>{
         // console.log(response.data[0])
         this.setState({
             _id: response.data[0]._id,
@@ -72,7 +72,7 @@ Fbupdatedata(){
     const data ={
         Username :  FB_UpdateUsername
     }
-    axios.put("http://localhost:7777/facebook/Fb_update/"+_id,data).then(response =>{
+    axios.put(`${process.env.REACT_APP_BACKEND_URL}/facebook/Fb_update/`+_id,data).then(response =>{
         console.log(response)
     })
 }
@@ -82,7 +82,7 @@ Fbupdatedata(){
 
 deletefbuser(_id){
     console.log(_id)
-    axios.delete("http://localhost:7777/facebook/Fb_delete/"+_id).then(response =>{
+    axios.delete(`${process.env.REACT_APP_BACKEND_URL}/facebook/Fb_delete/`+_id).then(response =>{
      console.log(response)
      if(response){
          this.setState({
@@ -99,7 +99,7 @@ deletefbuser(_id){
 
     //  /Fb_Getdata
 Fb_timer(){
-    axios.get("http://localhost:7777/facebook/Fb_Getdata").then(response =>{
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/facebook/Fb_Getdata`).then(response =>{
         console.log('Running')
     })
 }

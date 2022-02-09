@@ -65,7 +65,7 @@ export default class Content extends React.Component {
     
      YT_F() {
 
-        axios.get("http://localhost:7777/youtube/YT_Getalldata").then((response)=>{
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/youtube/YT_Getalldata`).then((response)=>{
             // console.log(parseInt( response.data[0].Subscriber))
             const yt_data = parseInt( response.data[0].Subscriber)
             if(yt_data){
@@ -77,7 +77,7 @@ export default class Content extends React.Component {
 
       FB_F() {
 
-        axios.get("http://localhost:7777/facebook/Fb_Getalldata").then((response)=>{
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/facebook/Fb_Getalldata`).then((response)=>{
    
             const fb_data = parseInt(response.data[0].Followers)
             if(fb_data){
@@ -88,7 +88,7 @@ export default class Content extends React.Component {
       }
 
       TK_F(){
-        axios.get("http://localhost:7777/tiktok/TT_Getalldata").then((response)=>{
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/tiktok/TT_Getalldata`).then((response)=>{
          
             const tk_data = parseInt(response.data[0].Followers)
             if(tk_data){
@@ -99,7 +99,7 @@ export default class Content extends React.Component {
       }
 
       IN_F(){
-        axios.get("http://localhost:7777/instagram/In_Getalldata").then((response)=>{
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/instagram/In_Getalldata`).then((response)=>{
            
             const in_data = parseInt(response.data[0].Followers)
             if(in_data){
@@ -133,7 +133,7 @@ export default class Content extends React.Component {
 
       Yt_timer(){
 
-        axios.get("http://localhost:7777/youtube/YT_Get").then(response =>{
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/youtube/YT_Get`).then(response =>{
             console.log('Youtube Running')
         })
 
@@ -142,7 +142,7 @@ export default class Content extends React.Component {
 
 
     IN_timer(){
-        axios.get("http://localhost:7777/Instagram/In_Get").then(response =>{
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/instagram/In_Get`).then(response =>{
             console.log('Running')
         })
     }
@@ -151,7 +151,7 @@ export default class Content extends React.Component {
 
     TT_timer(){
 
-      axios.get("http://localhost:7777/tiktok/TT_Get").then(response =>{
+      axios.get(`${process.env.REACT_APP_BACKEND_URL}/tiktok/TT_Get`).then(response =>{
           console.log('Running')
       })
 
@@ -159,7 +159,7 @@ export default class Content extends React.Component {
 
 
   Fb_timer(){
-    axios.get("http://localhost:7777/facebook/Fb_Getdata").then(response =>{
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/facebook/Fb_Getdata`).then(response =>{
         console.log('Running')
     })
 }
