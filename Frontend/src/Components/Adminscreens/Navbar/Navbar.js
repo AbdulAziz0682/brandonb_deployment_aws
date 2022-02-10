@@ -16,28 +16,28 @@ export default class Navbar extends Component {
         return (
             <>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="https://usmandeveloper.com/">Usman developer </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+<nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a className="navbar-brand" href="https://usmandeveloper.com/">Usman developer </a>
+  <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span className="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav ml-auto ">
-      <li class="nav-item">
-      <NavLink to="/instragram" activeClassName="selected" class="nav-link">Instagram</NavLink>
+  <div className="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul className="navbar-nav ml-auto ">
+      <li className="nav-item">
+      <NavLink to="/instragram" activeClassName="selected" className="nav-link" >Instagram</NavLink>
       </li>
-      <li class="nav-item">
-      <NavLink to="/tiktok" activeClassName="selected" class="nav-link">Tiktok</NavLink>
+      <li className="nav-item">
+      <NavLink to="/tiktok" activeClassName="selected" className="nav-link">Tiktok</NavLink>
       </li>
-      <li class="nav-item">
-      <NavLink to="/facebook" activeClassName="selected" class="nav-link">Facebook</NavLink>
+      <li className="nav-item">
+      <NavLink to="/facebook" activeClassName="selected" className="nav-link">Facebook</NavLink>
       </li>
-      <li class="nav-item">
-      <NavLink to="/youtube" activeClassName="selected" class="nav-link">Youtube</NavLink>
+      <li className="nav-item">
+      <NavLink to="/youtube" activeClassName="selected" className="nav-link">Youtube</NavLink>
       </li>
-      <li class="nav-item">
-      <button class="nav-link btn btn-danger" style={{width:'100px'}} onClick={this.logout} >LOGOUT</button>
+      <li className="nav-item">
+      <button className="nav-link btn btn-danger" style={{width:'100px'}} onClick={this.logout} >LOGOUT</button>
       </li>
     </ul>
   </div>

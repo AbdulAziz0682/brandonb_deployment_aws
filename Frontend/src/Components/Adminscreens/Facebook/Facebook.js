@@ -26,7 +26,7 @@ FbChangehandler(e){
 
 componentDidMount(){
     axios.get(`${process.env.REACT_APP_BACKEND_URL}/facebook/Fb_Getalldata`).then(response =>{
-        console.log(response.data[0])
+        console.log('Facebook Followers Fetching',response.data[0])
         this.setState({
            Fb_data:response.data
         })
@@ -34,7 +34,7 @@ componentDidMount(){
     setInterval(this.Fb_timer ,180000)
 
     const token = localStorage.getItem('token')
-    console.log(token)
+    // console.log(token)
     if(token === null){
         this.props.history.push('/usmandpadmin')
     }
@@ -58,7 +58,7 @@ FbUserDetails(){
 
 Fbgetdataforedit(){
     axios.get(`${process.env.REACT_APP_BACKEND_URL}/facebook/Fb_Getalldata`).then(response =>{
-        // console.log(response.data[0])
+        console.log(response.data[0])
         this.setState({
             _id: response.data[0]._id,
             FB_UpdateUsername : response.data[0].Username
@@ -113,17 +113,17 @@ Fb_timer(){
 
 {/* usmandeveloper.com */}
 
-<div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <table class="table table-bordered">
+<div className="container">
+                    <div className="row">
+                        <div className="col-12">
+                            <table className="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th></th>
                                         <th></th>
                                         <th></th>
                                         <th></th>
-                                        <th> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FacebookModal" style={{ backgroundColor: 'lightblue', fontSize: '13px' }} >+ Add User details</button> </th>
+                                        <th> <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#FacebookModal" style={{ backgroundColor: 'lightblue', fontSize: '13px' }} >+ Add User details</button> </th>
 
                                     </tr>
                                     <tr>
@@ -144,8 +144,8 @@ Fb_timer(){
                                             <button 
                                             type="button" onClick={()=>this.Fbgetdataforedit()} 
                                             data-toggle="modal" data-target="#UpdateFacebookModal"
-                                            class="btn btn-success" style={{ width: '50px', marginRight: '20px', marginLeft: '30px' }}><i class="fa fa-edit"></i></button>
-                                            <button type="button" onClick={()=>this.deletefbuser(FB._id)} class="btn btn-danger" style={{ width: '50px', marginRight: '20px' }}><i class="fa fa-trash-alt"></i></button>
+                                            className="btn btn-success" style={{ width: '50px', marginRight: '20px', marginLeft: '30px' }}><i className="fa fa-edit"></i></button>
+                                            <button type="button" onClick={()=>this.deletefbuser(FB._id)} className="btn btn-danger" style={{ width: '50px', marginRight: '20px' }}><i className="fa fa-trash-alt"></i></button>
                                         </td>
                                     </tr>):
                                     null
@@ -158,38 +158,38 @@ Fb_timer(){
                 </div>
 
 
-                <div class="modal fade" id="FacebookModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Add Facebook User</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style={{width:70}}>
+                <div className="modal fade" id="FacebookModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div className="modal-dialog modal-dialog-centered" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="exampleModalLongTitle">Add Facebook User</h5>
+                                <button type="button" className="close" data-dismiss="modal" aria-label="Close" style={{width:70}}>
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body">
+                            <div className="modal-body">
                                 <form>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Username</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" 
+                                    <div className="form-group">
+                                        <label htmlFor="exampleInputEmail1">Username</label>
+                                        <input type="email" className="form-control" id="exampleInputEmail1" 
                                         aria-describedby="emailHelp" placeholder="Usmandeveloper.com"
                                         name="FB_Username"
                                         onChange={this.FbChangehandler}
                                         value ={FB_Username} 
                                         
                                         />
-                                        <small id="emailHelp" class="form-text text-muted">Add FB Username like https://www.facebook.com/<span style={{color:'red'}}>thedeveloperusman</span> </small>
+                                        <small id="emailHelp" className="form-text text-muted">Add FB Username like https://www.facebook.com/<span style={{color:'red'}}>thedeveloperusman</span> </small>
                                     </div>
-                                    {/* <div class="form-group">
+                                    {/* <div className="form-group">
                                         <label for="exampleInputPassword1">Password</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+                                        <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
                                     </div> */}
                                 </form>
 
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" onClick={this.FbUserDetails}>Add User</button>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" className="btn btn-primary" onClick={this.FbUserDetails}>Add User</button>
                             </div>
                         </div>
                     </div>
@@ -198,37 +198,37 @@ Fb_timer(){
 
                 {/* for edit modal  */}
 
-                <div class="modal fade" id="UpdateFacebookModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Update Facebook user</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style={{width:70}}>
+                <div className="modal fade" id="UpdateFacebookModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div className="modal-dialog modal-dialog-centered" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="exampleModalLongTitle">Update Facebook user</h5>
+                                <button type="button" className="close" data-dismiss="modal" aria-label="Close" style={{width:70}}>
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body">
+                            <div className="modal-body">
                                 <form>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Facebook Username</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1"  
+                                    <div className="form-group">
+                                        <label htmlFor="exampleInputEmail1">Facebook Username</label>
+                                        <input type="email" className="form-control" id="exampleInputEmail1"  
                                         aria-describedby="emailHelp" placeholder="Usmandeveloper.com"
                                         name="FB_UpdateUsername"
                                         onChange={this.FbChangehandler}
                                         value ={FB_UpdateUsername} 
                                         />
-                                        <small id="emailHelp" class="form-text text-muted">Add tiktok Username like https://www.facebook.com/<span style={{color:'red'}}>thedeveloperusman</span> </small>
+                                        <small id="emailHelp" className="form-text text-muted">Add tiktok Username like https://www.facebook.com/<span style={{color:'red'}}>thedeveloperusman</span> </small>
                                     </div>
-                                    {/* <div class="form-group">
+                                    {/* <div className="form-group">
                                         <label for="exampleInputPassword1">Password</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+                                        <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
                                     </div> */}
                                 </form>
 
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" onClick={this.Fbupdatedata}>Update User</button>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" className="btn btn-primary" onClick={this.Fbupdatedata}>Update User</button>
                             </div>
                         </div>
                     </div>

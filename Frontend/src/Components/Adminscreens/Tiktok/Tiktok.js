@@ -34,7 +34,7 @@ export default class tiktok extends Component {
             Username:Username
         }
         axios.post(`${process.env.REACT_APP_BACKEND_URL}/tiktok/TT_Post`,body).then((res)=>{
-            console.log(res)
+            console.log('Tiktok Data',res)
             if(res){
                 this.componentDidMount()
             }
@@ -45,13 +45,14 @@ export default class tiktok extends Component {
 
     componentDidMount(){
         axios.get(`${process.env.REACT_APP_BACKEND_URL}/tiktok/TT_Getalldata`).then(response =>{
-            console.log(response.data[0])
+            // console.log(response.data[0])
+            console.log("Tiktok Followers Fetching",response.data[0])
             this.setState({
                 tiktok_data:response.data
             })
         })
         const token = localStorage.getItem('token')
-        console.log(token)
+        // console.log(token)
         if(token === null){
             this.props.history.push('/usmandpadmin')
         }
@@ -61,7 +62,8 @@ export default class tiktok extends Component {
 
     TTgetdataforedit(){
         axios.get(`${process.env.REACT_APP_BACKEND_URL}/tiktok/TT_Getalldata`).then(response =>{
-            console.log(response.data[0])
+            // console.log(response.data[0])
+            console.log("Tiktok Followers Fetching",response.data[0])
             this.setState({
                 _id: response.data[0]._id,
                 TTUpdateUsername : response.data[0].Username
@@ -125,15 +127,15 @@ export default class tiktok extends Component {
                 <h1>TIKTOK</h1>
 
 
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <table class="table table-bordered">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-12">
+                            <table className="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th></th>
                                         <th></th>
-                                        <th> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#TiktokeModal" style={{ backgroundColor: '#FF0000', fontSize: '13px' }} >+ Add User details</button> </th>
+                                        <th> <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#TiktokeModal" style={{ backgroundColor: '#FF0000', fontSize: '13px' }} >+ Add User details</button> </th>
 
                                     </tr>
                                     <tr>
@@ -152,8 +154,8 @@ export default class tiktok extends Component {
                                             <button 
                                             type="button" onClick={()=>this.TTgetdataforedit()} 
                                             data-toggle="modal" data-target="#UpdateYoutubeModal"
-                                            class="btn btn-success" style={{ width: '50px', marginRight: '20px', marginLeft: '30px' }}><i class="fa fa-edit"></i></button>
-                                            <button type="button" onClick={()=>this.deleteTTuser(TT._id)} class="btn btn-danger" style={{ width: '50px', marginRight: '20px' }}><i class="fa fa-trash-alt"></i></button>
+                                            className="btn btn-success" style={{ width: '50px', marginRight: '20px', marginLeft: '30px' }}><i className="fa fa-edit"></i></button>
+                                            <button type="button" onClick={()=>this.deleteTTuser(TT._id)} className="btn btn-danger" style={{ width: '50px', marginRight: '20px' }}><i className="fa fa-trash-alt"></i></button>
                                         </td>
                                     </tr>):
                                     null
@@ -166,36 +168,36 @@ export default class tiktok extends Component {
                 </div>
 
 
-                <div class="modal fade" id="TiktokeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Add Tiktok User</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style={{width:70}}>
+                <div className="modal fade" id="TiktokeModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div className="modal-dialog modal-dialog-centered" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="exampleModalLongTitle">Add Tiktok User</h5>
+                                <button type="button" className="close" data-dismiss="modal" aria-label="Close" style={{width:70}}>
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body">
+                            <div className="modal-body">
                                 <form>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Username</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" 
+                                    <div className="form-group">
+                                        <label htmlFor="exampleInputEmail1">Username</label>
+                                        <input type="email" className="form-control" id="exampleInputEmail1" 
                                         aria-describedby="emailHelp" placeholder="Usmandeveloper.com"
                                         name="Username"
                                         onChange={this.Changehandler}
                                         value ={Username} />
-                                        <small id="emailHelp" class="form-text text-muted">Add tiktok Username like https://tiktok.com/@<span style={{color:'red'}}>Usmandeveloper</span> </small>
+                                        <small id="emailHelp" className="form-text text-muted">Add tiktok Username like https://tiktok.com/@<span style={{color:'red'}}>Usmandeveloper</span> </small>
                                     </div>
-                                    {/* <div class="form-group">
+                                    {/* <div className="form-group">
                                         <label for="exampleInputPassword1">Password</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+                                        <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
                                     </div> */}
                                 </form>
 
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" onClick={this.sendUserDetails}>Add User</button>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" className="btn btn-primary" onClick={this.sendUserDetails}>Add User</button>
                             </div>
                         </div>
                     </div>
@@ -206,36 +208,36 @@ export default class tiktok extends Component {
 
                 {/* for edit modal  */}
 
-                <div class="modal fade" id="UpdateYoutubeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Update Facebook user</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style={{width:70}}>
+                <div className="modal fade" id="UpdateYoutubeModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div className="modal-dialog modal-dialog-centered" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="exampleModalLongTitle">Update Facebook user</h5>
+                                <button type="button" className="close" data-dismiss="modal" aria-label="Close" style={{width:70}}>
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body">
+                            <div className="modal-body">
 
 
 
                             <form>
-                                <div class="form-group">
-                                        <label for="exampleInputPassword1">Username</label>
-                                        <input type="text" class="form-control" id="exampleInputPassword1"
+                                <div className="form-group">
+                                        <label htmlFor="exampleInputPassword1">Username</label>
+                                        <input type="text" className="form-control" id="exampleInputPassword1"
                                          placeholder="Username"
                                          name="TTUpdateUsername"
                                          onChange={this.Changehandler}
                                          value ={TTUpdateUsername}  
                                          />
-                                        <small id="emailHelp" class="form-text text-muted">Add FB Username like https://www.facebook.com/<span style={{color:'red'}}>thedeveloperusman</span> </small>
+                                        <small id="emailHelp" className="form-text text-muted">Add FB Username like https://www.facebook.com/<span style={{color:'red'}}>thedeveloperusman</span> </small>
                                     </div>
                                 </form>
 
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" onClick={this.TTupdatedata}>Update User</button>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" className="btn btn-primary" onClick={this.TTupdatedata}>Update User</button>
                             </div>
                         </div>
                     </div>

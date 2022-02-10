@@ -41,25 +41,27 @@ export default class Content extends React.Component {
          /// Facebook timer function (19 minutes)
         setInterval(this.FB_F ,1140000)
         /// Total followers counter timer (3 minute 30 sec)
-        setInterval(this.Total_F , 198000)
+        setInterval(this.Total_F , 2500)
+
+
+
+        /// Youtube timer for updatadata function (8 minutes)
+        setInterval(this.Yt_timer ,480000)
+
+        /// Instagram timer for updatadata function (11 minutes)
+        setInterval(this.IN_timer ,660000)
+        
+        /// Tiktok timer for updatadata function (14 minutes)
+        setInterval(this.TT_timer ,840000)
+
+        /// Facebook timer for updatadata function (18 minutes)
+        setInterval(this.Fb_timer ,1080000)
 
         this.YT_F()
         this.FB_F()
         this.TK_F()
         this.IN_F()
         this.Total_F()
-
-        /// Youtube timer function (8 minutes)
-        setInterval(this.Yt_timer ,480000)
-
-        /// Instagram timer function (11 minutes)
-        setInterval(this.IN_timer ,660000)
-        
-        /// Tiktok timer function (14 minutes)
-        setInterval(this.TT_timer ,840000)
-
-        /// Facebook timer function (18 minutes)
-        setInterval(this.Fb_timer ,1080000)
         
       }
     
@@ -114,7 +116,7 @@ export default class Content extends React.Component {
         const {yt_followers,fb_followers , tk_followers , in_followers} = this.state
 
         const Total_followers = yt_followers + fb_followers + tk_followers +in_followers
-        console.log(Total_followers)
+        // console.log(Total_followers)
 
 
         var units = ["Million","Billion","Trillion","Quintillion"]
@@ -142,8 +144,8 @@ export default class Content extends React.Component {
 
 
     IN_timer(){
-        axios.get(`${process.env.REACT_APP_BACKEND_URL}/instagram/In_Get`).then(response =>{
-            console.log('Running')
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/Instagram/In_Get`).then(response =>{
+            console.log('Instagram Running')
         })
     }
 
@@ -152,7 +154,7 @@ export default class Content extends React.Component {
     TT_timer(){
 
       axios.get(`${process.env.REACT_APP_BACKEND_URL}/tiktok/TT_Get`).then(response =>{
-          console.log('Running')
+          console.log('Tiktok Running')
       })
 
   }
@@ -160,7 +162,7 @@ export default class Content extends React.Component {
 
   Fb_timer(){
     axios.get(`${process.env.REACT_APP_BACKEND_URL}/facebook/Fb_Getdata`).then(response =>{
-        console.log('Running')
+        console.log('Facebook Running')
     })
 }
 

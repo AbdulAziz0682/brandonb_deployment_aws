@@ -26,28 +26,29 @@ export default class instagram extends Component {
     }
 
     InstaUserDetails(){
-        const {Username} = this.state``
+        const {Username} = this.state
         console.log(Username)
         const body = {
             Username:Username
         }
         axios.post(`${process.env.REACT_APP_BACKEND_URL}/Instagram/In_Post`,body).then((res)=>{
-            console.log(res)
+            console.log('Data:',res)
+            this.componentDidMount()
         }).catch(error=>{
             console.log(error)
         })
     }
 
     componentDidMount(){
-        axios.get(`${process.env.REACT_APP_BACKEND_URL}/instagram/In_Getalldata`).then(response =>{
-            console.log(response.data[0])
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/Instagram/In_Getalldata`).then(response =>{
+            console.log("Instagram Followers Fetching",response.data[0])
             this.setState({
                 Insta_data:response.data
             })
         })
 
         const token = localStorage.getItem('token')
-        console.log(token)
+        // console.log(token)
         if(token === null){
             this.props.history.push('/usmandpadmin')
         }
@@ -57,8 +58,9 @@ export default class instagram extends Component {
     }
 
     getdataforedit(){
-        axios.get(`${process.env.REACT_APP_BACKEND_URL}/instagram/In_Getalldata`).then(response =>{
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/Instagram/In_Getalldata`).then(response =>{
             // console.log(response.data[0])
+            console.log("Instagram Followers Fetching",response.data[0])
             this.setState({
                 _id: response.data[0]._id,
                 UpdateUsername :response.data[0].Username
@@ -68,20 +70,21 @@ export default class instagram extends Component {
 
     updatedata(){
         const {UpdateUsername , _id} = this.state
-        console.log(UpdateUsername , _id)
+        // console.log(UpdateUsername , _id)
         const data ={
             Username : UpdateUsername
         }
-        axios.put(`${process.env.REACT_APP_BACKEND_URL}/instagram/In_update/`+_id,data).then(response =>{
+        axios.put(`${process.env.REACT_APP_BACKEND_URL}/Instagram/In_update/`+_id,data).then(response =>{
             console.log(response)
+            this.componentDidMount()
         })
 
     }
 
     deleteinstauser(_id){
-   console.log(_id)
-   axios.delete(`${process.env.REACT_APP_BACKEND_URL}/instagram/In_delete/`+_id).then(response =>{
-    console.log(response)
+//    console.log(_id)
+   axios.delete(`${process.env.REACT_APP_BACKEND_URL}/Instagram/In_delete/`+_id).then(response =>{
+    console.log('Data Deleted')
     if(response){
         this.setState({
             Insta_data:[]
@@ -101,17 +104,17 @@ export default class instagram extends Component {
 <Navbar/>
 <h1>Instagram</h1>
 
-<div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <table class="table table-bordered">
+<div className="container">
+                    <div className="row">
+                        <div className="col-12">
+                            <table className="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th></th>
                                         <th></th>
                                         <th></th>
                                         <th></th>
-                                        <th> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#InstagramModal" style={{ backgroundColor: '#8a3ab9', fontSize: '13px' }} >+ Add User details</button> </th>
+                                        <th> <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#InstagramModal" style={{ backgroundColor: '#8a3ab9', fontSize: '13px' }} >+ Add User details</button> </th>
 
                                     </tr>
                                     <tr>
@@ -132,8 +135,8 @@ export default class instagram extends Component {
                                             <button 
                                             type="button" onClick={()=>this.getdataforedit()} 
                                             data-toggle="modal" data-target="#UpdateInstagramModal"
-                                            class="btn btn-success" style={{ width: '50px', marginRight: '20px', marginLeft: '30px' }}><i class="fa fa-edit"></i></button>
-                                            <button type="button" onClick={()=>this.deleteinstauser(insta._id)} class="btn btn-danger" style={{ width: '50px', marginRight: '20px' }}><i class="fa fa-trash-alt"></i></button>
+                                            className="btn btn-success" style={{ width: '50px', marginRight: '20px', marginLeft: '30px' }}><i className="fa fa-edit"></i></button>
+                                            <button type="button" onClick={()=>this.deleteinstauser(insta._id)} className="btn btn-danger" style={{ width: '50px', marginRight: '20px' }}><i className="fa fa-trash-alt"></i></button>
                                         </td>
                                     </tr>):
                                     null
@@ -146,32 +149,32 @@ export default class instagram extends Component {
                 </div>
 
 
-                <div class="modal fade" id="InstagramModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Add Tiktok User</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style={{width:70}}>
+                <div className="modal fade" id="InstagramModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div className="modal-dialog modal-dialog-centered" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="exampleModalLongTitle">Add Instagram User</h5>
+                                <button type="button" className="close" data-dismiss="modal" aria-label="Close" style={{width:70}}>
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body">
+                            <div className="modal-body">
                                 <form>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Username</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" 
+                                    <div className="form-group">
+                                        <label htmlFor="exampleInputEmail1">Username</label>
+                                        <input type="email" className="form-control" id="exampleInputEmail1" 
                                         aria-describedby="emailHelp" placeholder="Usmandeveloper.com"
                                         name="Username"
                                         onChange={this.Changehandler}
                                         value ={Username} />
-                                        <small id="emailHelp" class="form-text text-muted">Add tiktok Username like https://www.instagram.com/<span style={{color:'red'}}>developerusman</span> </small>
+                                        <small id="emailHelp" className="form-text text-muted">Add tiktok Username like https://www.instagram.com/<span style={{color:'red'}}>developerusman</span> </small>
                                     </div>
                                 </form>
 
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" onClick={this.InstaUserDetails}>Add User</button>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" className="btn btn-primary" onClick={this.InstaUserDetails}>Add User</button>
                             </div>
                         </div>
                     </div>
@@ -180,36 +183,36 @@ export default class instagram extends Component {
 
                 {/* for edit modal  */}
 
-                <div class="modal fade" id="UpdateInstagramModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Update Instagram user data</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style={{width:70}}>
+                <div className="modal fade" id="UpdateInstagramModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div className="modal-dialog modal-dialog-centered" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="exampleModalLongTitle">Update Instagram user data</h5>
+                                <button type="button" className="close" data-dismiss="modal" aria-label="Close" style={{width:70}}>
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body">
+                            <div className="modal-body">
                                 <form>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Instagram Username</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" 
+                                    <div className="form-group">
+                                        <label htmlFor="exampleInputEmail1">Instagram Username</label>
+                                        <input type="email" className="form-control" id="exampleInputEmail1" 
                                         aria-describedby="emailHelp" placeholder="Usmandeveloper.com"
                                         name="UpdateUsername"
                                         onChange={this.Changehandler}
                                         value ={UpdateUsername} />
-                                        <small id="emailHelp" class="form-text text-muted">Add tiktok Username like https://www.instagram.com/<span style={{color:'red'}}>developerusman</span> </small>
+                                        <small id="emailHelp" className="form-text text-muted">Add tiktok Username like https://www.instagram.com/<span style={{color:'red'}}>developerusman</span> </small>
                                     </div>
-                                    {/* <div class="form-group">
+                                    {/* <div className="form-group">
                                         <label for="exampleInputPassword1">Password</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+                                        <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
                                     </div> */}
                                 </form>
 
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" onClick={this.updatedata}>Update User</button>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" className="btn btn-primary" onClick={this.updatedata}>Update User</button>
                             </div>
                         </div>
                     </div>

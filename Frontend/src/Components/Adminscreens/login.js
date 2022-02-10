@@ -27,7 +27,7 @@ export default  class login extends Component{
     if(Email === 'Thedeveloperusman@gmail.com' && Password === 'PHonesty1998'){
       localStorage.setItem ('token',token)
       const checking = localStorage.getItem('token')
-      console.log(checking)
+      // console.log(checking)
       if (checking === token){
         this.props.history.push("/instragram")
 
